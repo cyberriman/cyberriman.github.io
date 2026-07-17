@@ -1,0 +1,466 @@
+/* ═══════════════════════════════════════════════════════════
+   THE COMMONPLACE BOOK
+   An English library room, rendered as web 1.0:
+   sage-green walls, honey wood, cream paper, a little
+   muted crimson and old brass. Flat, honest HTML.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --wall:     #a4b58e;   /* sage green walls            */
+  --paper:    #f5efdd;   /* cream plaster / paper       */
+  --paper-2:  #ece3ca;   /* slightly deeper cream       */
+  --field:    #faf5e6;   /* input fields                */
+  --ink:      #3a3122;   /* warm brown-black ink        */
+  --soft:     #6b5d43;
+  --faint:    #97896b;
+  --green:    #4a6a3b;   /* links — the walls, darker   */
+  --visited:  #7c5a37;   /* visited links — the wood    */
+  --crimson:  #90403a;   /* cushions & carpet — accents */
+  --gold:     #a3853e;   /* picture frames — sparse     */
+  --wood:     #7d5e3c;   /* bookcase wood — borders     */
+  --rule:     #c6b795;
+  --mono:  "Courier New", ui-monospace, "Menlo", monospace;
+  --serif: "EB Garamond", "Iowan Old Style", Georgia, serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { background: var(--wall); }
+
+body {
+  font-family: var(--serif);
+  font-size: 1.22rem;
+  line-height: 1.62;
+  color: var(--ink);
+  background: var(--wall);
+  padding: 2rem 1rem 2.6rem;
+  font-feature-settings: "onum" 1, "liga" 1;
+}
+
+/* The cream page on the green wall, in a thin wooden frame */
+.page {
+  max-width: 46rem;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 3px double var(--wood);
+  padding: 2.4rem 2.8rem 2.2rem;
+}
+
+::selection { background: var(--green); color: var(--paper); }
+
+/* ── Links: green; visited turn wood-brown, as the old web did ── */
+
+a         { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+a:visited { color: var(--visited); }
+a:hover   { color: var(--crimson); }
+
+/* ── Masthead ──────────────────────────────────────────── */
+
+.masthead {
+  text-align: center;
+  border-bottom: 3px double var(--rule);
+  padding-bottom: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.masthead-title {
+  font-variant-caps: small-caps;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 6vw, 2.6rem);
+  letter-spacing: 0.14em;
+  line-height: 1.1;
+}
+
+.masthead-title a, .masthead-title a:visited {
+  color: var(--ink);
+  text-decoration: none;
+}
+.masthead-title a:hover { color: var(--green); }
+
+.masthead-tagline {
+  font-style: italic;
+  color: var(--soft);
+  font-size: 1.02rem;
+  margin-top: 0.35rem;
+}
+
+.masthead-nav {
+  margin-top: 1rem;
+  font-variant-caps: small-caps;
+  letter-spacing: 0.1em;
+  font-size: 1.02rem;
+  color: var(--rule);
+}
+
+.masthead-nav a, .masthead-nav a:visited {
+  color: var(--green);
+  text-decoration: none;
+  padding: 0 0.4rem;
+}
+.masthead-nav a:hover { color: var(--crimson); text-decoration: underline; }
+.masthead-nav a.active { color: var(--crimson); border-bottom: 1px solid var(--crimson); }
+
+/* ── Headings ──────────────────────────────────────────── */
+
+h1, h2, h3, h4 { font-weight: 500; line-height: 1.25; }
+
+main h2 { font-size: 1.55rem; margin: 2.2rem 0 0.9rem; }
+main h3 { font-size: 1.25rem; margin: 1.8rem 0 0.7rem; }
+
+.section-heading {
+  font-variant-caps: small-caps;
+  letter-spacing: 0.16em;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--crimson);
+  text-align: center;
+  margin: 0 0 1.4rem !important;
+}
+
+.section-heading::before,
+.section-heading::after { content: " — "; color: var(--rule); }
+
+/* ── Small-caps metadata lines (dates, tags) ───────────── */
+
+.entry-meta, .post-meta {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+  font-size: 0.98rem;
+  color: var(--faint);
+}
+
+.post-tag, .post-tag:visited {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.1em;
+  color: var(--crimson);
+  text-decoration: none;
+}
+.post-tag:hover { text-decoration: underline; }
+
+/* ── Stars (ratings) ───────────────────────────────────── */
+
+.stars {
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.stars .num {
+  color: var(--faint);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+  margin-left: 0.3em;
+}
+
+/* ── Contents (home) & archive lists ───────────────────── */
+
+.archive-list { list-style: none; margin: 0 0 1.6rem; }
+
+.archive-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.archive-date {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+  color: var(--faint);
+  white-space: nowrap;
+  min-width: 6.2rem;
+}
+
+.archive-dots { flex: 1; border-bottom: 1px dotted var(--rule); transform: translateY(-4px); min-width: 1rem; }
+
+.archive-list a, .archive-list a:visited { text-decoration: none; color: var(--ink); }
+.archive-list a:hover { color: var(--green); }
+
+.toc-note { color: var(--soft); font-style: italic; font-size: 1.02rem; }
+.toc-note a { color: var(--green); }
+
+.archive-year {
+  font-variant-caps: small-caps;
+  letter-spacing: 0.14em;
+  color: var(--crimson);
+  font-size: 1.15rem;
+  margin: 1.8rem 0 0.7rem;
+  text-align: center;
+}
+
+/* ── Index: entries list ───────────────────────────────── */
+
+.entry { margin-bottom: 1.9rem; }
+
+.entry-title { font-size: 1.45rem; font-weight: 500; display: inline; }
+.entry-title a, .entry-title a:visited { color: var(--ink); text-decoration: none; }
+.entry-title a:hover { color: var(--green); }
+
+.entry-excerpt { color: var(--soft); margin-top: 0.15rem; }
+
+.entry-more { font-style: italic; font-size: 1rem; white-space: nowrap; }
+
+/* ── Filters (library, cinema, archive search) ─────────── */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: 1.4rem 0 0.4rem;
+}
+
+.filters input[type="search"],
+.filters select {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  color: var(--ink);
+  background: var(--field);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  padding: 0.32rem 0.6rem;
+  max-width: 100%;
+}
+
+.filters input[type="search"] { min-width: 13rem; }
+
+.filters input[type="search"]:focus,
+.filters select:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.filters input::placeholder { font-style: italic; color: var(--faint); }
+
+.filter-count {
+  text-align: center;
+  font-style: italic;
+  color: var(--faint);
+  font-size: 0.98rem;
+  margin-bottom: 1rem;
+}
+
+/* ── Post page ─────────────────────────────────────────── */
+
+.post-header { margin-bottom: 1.8rem; }
+
+.post-title { font-size: clamp(1.8rem, 6vw, 2.3rem); color: var(--ink); margin-top: 0.3rem; }
+
+.post-subtitle { font-style: italic; color: var(--soft); margin-top: 0.4rem; font-size: 1.12rem; }
+
+.post-source {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.1em;
+  font-size: 0.98rem;
+  color: var(--faint);
+  margin-top: 0.5rem;
+}
+.post-source a { color: var(--visited); }
+
+.post-content p { margin-bottom: 1.05rem; }
+.post-content p:has(+ p) { margin-bottom: 0; }
+.post-content p + p { text-indent: 1.6em; margin-top: 0; }
+
+.dropcap > p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.3em;
+  line-height: 0.82;
+  padding: 0.06em 0.08em 0 0;
+  color: var(--crimson);
+  font-weight: 500;
+}
+
+.post-content ul, .post-content ol { margin: 0 0 1.05rem 1.6rem; }
+.post-content li { margin-bottom: 0.25rem; }
+
+.post-content blockquote {
+  margin: 1.3rem 0 1.3rem 0.2rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--gold);
+  font-style: italic;
+  color: var(--soft);
+}
+
+.post-content hr {
+  border: 0;
+  margin: 1.8rem 0;
+  text-align: center;
+}
+.post-content hr::after {
+  content: "❦";
+  color: var(--gold);
+  font-size: 1.05rem;
+}
+
+.post-content img {
+  max-width: 100%;
+  border: 1px solid var(--wood);
+  padding: 3px;
+  background: #fffaf0;
+}
+
+.post-content code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  background: var(--paper-2);
+  padding: 0.05em 0.3em;
+}
+
+.post-content pre {
+  font-family: var(--mono);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  padding: 0.9rem 1.1rem;
+  overflow-x: auto;
+  margin-bottom: 1.05rem;
+  line-height: 1.5;
+}
+
+.post-content pre code { background: none; padding: 0; font-size: 0.8em; }
+
+.post-content table { border-collapse: collapse; margin: 1.3rem 0; font-size: 0.95em; }
+.post-content th, .post-content td {
+  border: 1px solid var(--rule);
+  padding: 0.35rem 0.9rem;
+}
+.post-content th { font-variant-caps: small-caps; letter-spacing: 0.06em; }
+
+.footnotes { font-size: 0.9em; color: var(--soft); }
+
+.katex { font-size: 1.06em; }
+
+/* ── Post footer & pagination ──────────────────────────── */
+
+.post-footer { margin-top: 2.4rem; }
+
+.post-pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  font-style: italic;
+  font-size: 1rem;
+}
+.post-pagination .next { margin-left: auto; text-align: right; }
+
+/* ══════════════════════════════════════════════════════════
+   LIBRARY & CINEMA — covers and posters on the cream page,
+   with brass star ratings and quiet filters.
+   ══════════════════════════════════════════════════════════ */
+
+.libgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 2rem 1.4rem;
+  margin: 1.4rem 0 2rem;
+}
+
+.libcard {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: var(--ink);
+}
+.libcard:visited { color: var(--ink); }
+.libcard:hover { color: var(--ink); }
+
+.libcard img {
+  width: 100%;
+  height: 11.5rem;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 0.55rem;
+}
+
+.libcard .stars { display: block; font-size: 0.82rem; }
+
+.libcard .book-t { display: block; font-size: 1.05rem; line-height: 1.3; margin-top: 0.25rem; }
+.libcard:hover .book-t { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+.libcard .book-a { display: block; font-style: italic; font-size: 0.88rem; color: var(--soft); }
+
+/* ── Book / film detail: cover left, review right ──────── */
+
+.book-detail {
+  display: grid;
+  grid-template-columns: 14rem minmax(0, 1fr);
+  gap: 2.2rem;
+  margin-top: 1.6rem;
+  align-items: start;
+}
+
+.book-side img {
+  width: 100%;
+  border: 1px solid var(--wood);
+  padding: 3px;
+  background: #fffaf0;
+  display: block;
+}
+
+.meta-list {
+  margin-top: 0.9rem;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--soft);
+}
+
+.meta-list > div { margin-bottom: 0.35rem; }
+
+.meta-list .label {
+  display: block;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+  color: var(--faint);
+  font-size: 0.92rem;
+}
+
+.meta-list .stars { font-size: 0.9rem; }
+
+.book-review-title { font-size: 1.75rem; line-height: 1.2; }
+
+.book-review-author { font-style: italic; color: var(--soft); margin: 0.25rem 0 1.1rem; }
+
+@media (max-width: 640px) {
+  .book-detail { grid-template-columns: 1fr; }
+  .book-side { max-width: 13rem; }
+}
+
+/* ── Colophon ──────────────────────────────────────────── */
+
+.colophon {
+  border-top: 3px double var(--rule);
+  margin-top: 3rem;
+  padding-top: 1rem;
+  text-align: center;
+  color: var(--soft);
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+.colophon .fleuron { color: var(--gold); font-size: 1.1rem; }
+
+.badges {
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--faint);
+}
+
+.badges a, .badges a:visited { color: var(--faint); text-decoration: none; }
+.badges a:hover { color: var(--crimson); }
+.badges b { font-weight: 600; color: var(--green); }
+.badges .sep { color: var(--rule); padding: 0 0.35rem; }
+
+.colophon-fine {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+  font-size: 0.92rem;
+  color: var(--faint);
+}
+
+/* ── Small screens ─────────────────────────────────────── */
+
+@media (max-width: 560px) {
+  body { font-size: 1.1rem; padding: 0.9rem 0.5rem 1.6rem; }
+  .page { padding: 1.6rem 1.1rem 1.6rem; }
+  .archive-date { min-width: 5rem; }
+}

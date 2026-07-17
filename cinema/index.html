@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Cinema — The Commonplace Book</title>
+  <meta name="description" content="A personal commonplace book. Notes on what I&#39;ve read, watched, thought, and built. No algorithms, no tracking, no comments. Just words.">
+  <link rel="alternate" type="application/atom+xml" title="The Commonplace Book" href="/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <h1 class="masthead-title"><a href="/">The Commonplace Book</a></h1>
+    <p class="masthead-tagline">books · films · code · mathematics · miscellany · est. 2026</p>
+    <nav class="masthead-nav">
+      <a href="/" >Home</a> |
+      <a href="/library/" >Library</a> |
+      <a href="/cinema/" class="active">Cinema</a> |
+      <a href="/problems/" >Problems</a> |
+      <a href="/archive/" >Archive</a> |
+      <a href="/about/" >About</a> |
+      <a href="/feed.xml">RSS</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="section-heading">The Cinema</h2>
+
+<p style="text-align: center; font-style: italic; color: var(--soft);">
+  Films watched and weighed. Click a poster for the full review.
+</p>
+
+<form class="filters" id="cin-filters" onsubmit="return false">
+  <input type="search" id="c-q" placeholder="Search by title…" aria-label="Search by title">
+  <select id="c-director" aria-label="Filter by director">
+    <option value="">All directors</option>
+    <option value="Sidney Lumet">Sidney Lumet</option>
+  </select>
+  <select id="c-genre" aria-label="Filter by genre">
+    <option value="">All genres</option>
+    <option value="drama">drama</option>
+  </select>
+  <select id="c-actor" aria-label="Filter by actor">
+    <option value="">All actors</option>
+    <option value="Henry Fonda">Henry Fonda</option><option value="Lee J. Cobb">Lee J. Cobb</option><option value="Martin Balsam">Martin Balsam</option>
+  </select>
+  <select id="c-rating" aria-label="Minimum rating">
+    <option value="">Any rating</option>
+    <option value="9">9 and above</option>
+    <option value="8">8 and above</option>
+    <option value="7">7 and above</option>
+    <option value="5">5 and above</option>
+  </select>
+</form>
+<p class="filter-count" id="c-count"></p>
+
+<div class="libgrid" id="cin-grid">
+  
+  <a class="libcard" href="/cinema/12-angry-men/"
+     data-title="12 angry men"
+     data-director="Sidney Lumet"
+     data-genre="drama"
+     data-actors="Henry Fonda|Lee J. Cobb|Martin Balsam"
+     data-rating="9">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/12_Angry_Men_%281957_film_poster%29.jpg/500px-12_Angry_Men_%281957_film_poster%29.jpg" alt="Poster of 12 Angry Men" loading="lazy">
+    <span class="stars">★★★★★★★★★☆<span class="num">9/10</span></span>
+    <span class="book-t">12 Angry Men</span>
+    <span class="book-a">Sidney Lumet, 1957</span>
+  </a>
+  
+</div>
+
+<script>
+(function () {
+  var q = document.getElementById('c-q'),
+      director = document.getElementById('c-director'),
+      genre = document.getElementById('c-genre'),
+      actor = document.getElementById('c-actor'),
+      rating = document.getElementById('c-rating'),
+      count = document.getElementById('c-count'),
+      cards = Array.prototype.slice.call(document.querySelectorAll('#cin-grid .libcard'));
+
+  function apply() {
+    var qq = q.value.trim().toLowerCase(), shown = 0;
+    cards.forEach(function (c) {
+      var ok =
+        (!qq || c.dataset.title.indexOf(qq) !== -1 || c.dataset.director.toLowerCase().indexOf(qq) !== -1) &&
+        (!director.value || c.dataset.director === director.value) &&
+        (!genre.value || c.dataset.genre === genre.value) &&
+        (!actor.value || c.dataset.actors.split('|').indexOf(actor.value) !== -1) &&
+        (!rating.value || parseInt(c.dataset.rating) >= parseInt(rating.value));
+      c.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    count.textContent = shown === cards.length
+      ? cards.length + ' films in the programme'
+      : shown + ' of ' + cards.length + ' films shown';
+  }
+
+  [q, director, genre, actor, rating].forEach(function (el) {
+    el.addEventListener('input', apply);
+    el.addEventListener('change', apply);
+  });
+  apply();
+})();
+</script>
+
+  </main>
+
+  <footer class="colophon">
+    <div class="fleuron">❦</div>
+    <div>No algorithms. No tracking. No comments. Just words.</div>
+    <div class="badges">
+      <a href="/feed.xml"><b>RSS</b> — subscribe free</a><span class="sep">·</span>
+      <span>made with <b>plain HTML</b></span><span class="sep">·</span>
+      <span>best viewed in <b>any browser</b></span>
+    </div>
+    <div class="colophon-fine">© 2026 · hand-written · long live the old web</div>
+  </footer>
+
+</div>
+</body>
+</html>

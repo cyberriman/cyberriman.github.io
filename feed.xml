@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>The Commonplace Book</title>
+  <subtitle>books · films · code · mathematics · miscellany</subtitle>
+  <link href="https://cyberriman.github.io/feed.xml" rel="self"/>
+  <link href="https://cyberriman.github.io/"/>
+  <updated>2026-07-14T00:00:00.000Z</updated>
+  <id>https://cyberriman.github.io/</id>
+  <author><name>S.</name></author>
+  <entry>
+    <title>On starting a commonplace book</title>
+    <link href="https://cyberriman.github.io/hello-world/"/>
+    <updated>2026-07-14T00:00:00.000Z</updated>
+    <id>https://cyberriman.github.io/hello-world/</id>
+    <content type="html"><![CDATA[<p>Why keep a personal site in 2026, when every social network offers a bigger audience? Because the audience was never the point.</p>
+<p>A commonplace book is written for its keeper. Into it go book reviews, film notes, plans and goals, technical articles, pages of mathematics — anything worth thinking about twice. Writing a thing down is how you find out whether you actually understand it.</p>
+<p>So this site is deliberately small and deliberately old-fashioned:</p>
+<ul>
+<li><strong>Plain pages.</strong> No feed, no infinite scroll. You read to the end, and the page ends.</li>
+<li><strong>Plain files.</strong> Every entry is a text file on my machine. No database, no platform that can vanish and take the archive with it.</li>
+<li><strong>Plain manners.</strong> No tracking, no pop-ups asking you to subscribe.</li>
+</ul>
+<p>If in ten years this page still opens in whatever browsers look like then — it will have succeeded.</p>
+<hr>
+<p>Here’s to the old web. ❦</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>«Мастер и Маргарита» — перечитывая в третий раз</title>
+    <link href="https://cyberriman.github.io/master-and-margarita/"/>
+    <updated>2026-07-10T00:00:00.000Z</updated>
+    <id>https://cyberriman.github.io/master-and-margarita/</id>
+    <content type="html"><![CDATA[<p>Каждое перечитывание — другая книга. В юности читаешь ради Воланда и его свиты, ради кота Бегемота и московской сатиры; позже — ради Мастера и Маргариты; теперь, кажется, ради Пилата и его разговора с Иешуа.</p>
+<p>Что заметил в этот раз:</p>
+<ul>
+<li>Московские главы смешны ровно до тех пор, пока не понимаешь, что смеёшься над людьми, которым по-настоящему страшно.</li>
+<li>Ершалаимские главы написаны совсем другим языком — сухим, точным, почти без прилагательных. Контраст задуман, и он работает.</li>
+<li>«Рукописи не горят» — фраза, которую цитируют как утешение, хотя в романе она звучит скорее как приговор: написанное нельзя отменить.</li>
+</ul>
+<p><strong>Вердикт:</strong> великая книга, которая каждый раз старше тебя ровно настолько, насколько нужно.</p>
+<p><em>Оценка: ★★★★★</em></p>
+]]></content>
+  </entry>
+</feed>

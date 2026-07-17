@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Library — The Commonplace Book</title>
+  <meta name="description" content="A personal commonplace book. Notes on what I&#39;ve read, watched, thought, and built. No algorithms, no tracking, no comments. Just words.">
+  <link rel="alternate" type="application/atom+xml" title="The Commonplace Book" href="/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <h1 class="masthead-title"><a href="/">The Commonplace Book</a></h1>
+    <p class="masthead-tagline">books · films · code · mathematics · miscellany · est. 2026</p>
+    <nav class="masthead-nav">
+      <a href="/" >Home</a> |
+      <a href="/library/" class="active">Library</a> |
+      <a href="/cinema/" >Cinema</a> |
+      <a href="/problems/" >Problems</a> |
+      <a href="/archive/" >Archive</a> |
+      <a href="/about/" >About</a> |
+      <a href="/feed.xml">RSS</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="section-heading">The Library</h2>
+
+<p style="text-align: center; font-style: italic; color: var(--soft);">
+  Books read, shelved, and judged. Click a cover for the full review.
+</p>
+
+<form class="filters" id="lib-filters" onsubmit="return false">
+  <input type="search" id="f-q" placeholder="Search by title or author…" aria-label="Search by title or author">
+  <select id="f-author" aria-label="Filter by author">
+    <option value="">All authors</option>
+    <option value="Bertolt Brecht">Bertolt Brecht</option><option value="Джером Сэлинджер">Джером Сэлинджер</option>
+  </select>
+  <select id="f-genre" aria-label="Filter by genre">
+    <option value="">All genres</option>
+    <option value="classics">classics</option><option value="Комедия">Комедия</option>
+  </select>
+  <select id="f-rating" aria-label="Minimum rating">
+    <option value="">Any rating</option>
+    <option value="9">9 and above</option>
+    <option value="8">8 and above</option>
+    <option value="7">7 and above</option>
+    <option value="5">5 and above</option>
+  </select>
+</form>
+<p class="filter-count" id="f-count"></p>
+
+<div class="libgrid" id="lib-grid">
+  
+  <a class="libcard" href="/library/трехгрошовая-опера/"
+     data-title="трехгрошовая опера"
+     data-author="Bertolt Brecht"
+     data-genre="Комедия"
+     data-rating="5">
+    <img src="https://upload.wikimedia.org/wikipedia/ru/2/21/Die_Dreigroschenoper.jpg" alt="Cover of Трехгрошовая опера" loading="lazy">
+    <span class="stars">★★★★★☆☆☆☆☆<span class="num">5/10</span></span>
+    <span class="book-t">Трехгрошовая опера</span>
+    <span class="book-a">Bertolt Brecht</span>
+  </a>
+  
+  <a class="libcard" href="/library/crime-and-punishment/"
+     data-title="над пропастью во ржи"
+     data-author="Джером Сэлинджер"
+     data-genre="classics"
+     data-rating="7">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/The_Catcher_in_the_Rye_%281951%2C_first_edition_cover%29.jpg" alt="Cover of Над пропастью во ржи" loading="lazy">
+    <span class="stars">★★★★★★★☆☆☆<span class="num">7/10</span></span>
+    <span class="book-t">Над пропастью во ржи</span>
+    <span class="book-a">Джером Сэлинджер</span>
+  </a>
+  
+</div>
+
+<script>
+(function () {
+  var q = document.getElementById('f-q'),
+      author = document.getElementById('f-author'),
+      genre = document.getElementById('f-genre'),
+      rating = document.getElementById('f-rating'),
+      count = document.getElementById('f-count'),
+      cards = Array.prototype.slice.call(document.querySelectorAll('#lib-grid .libcard'));
+
+  function apply() {
+    var qq = q.value.trim().toLowerCase(), shown = 0;
+    cards.forEach(function (c) {
+      var ok =
+        (!qq || c.dataset.title.indexOf(qq) !== -1 || c.dataset.author.toLowerCase().indexOf(qq) !== -1) &&
+        (!author.value || c.dataset.author === author.value) &&
+        (!genre.value || c.dataset.genre === genre.value) &&
+        (!rating.value || parseInt(c.dataset.rating) >= parseInt(rating.value));
+      c.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    count.textContent = shown === cards.length
+      ? cards.length + ' volumes on the shelf'
+      : shown + ' of ' + cards.length + ' volumes shown';
+  }
+
+  [q, author, genre, rating].forEach(function (el) {
+    el.addEventListener('input', apply);
+    el.addEventListener('change', apply);
+  });
+  apply();
+})();
+</script>
+
+  </main>
+
+  <footer class="colophon">
+    <div class="fleuron">❦</div>
+    <div>No algorithms. No tracking. No comments. Just words.</div>
+    <div class="badges">
+      <a href="/feed.xml"><b>RSS</b> — subscribe free</a><span class="sep">·</span>
+      <span>made with <b>plain HTML</b></span><span class="sep">·</span>
+      <span>best viewed in <b>any browser</b></span>
+    </div>
+    <div class="colophon-fine">© 2026 · hand-written · long live the old web</div>
+  </footer>
+
+</div>
+</body>
+</html>

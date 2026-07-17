@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Problem Book — The Commonplace Book</title>
+  <meta name="description" content="A personal commonplace book. Notes on what I&#39;ve read, watched, thought, and built. No algorithms, no tracking, no comments. Just words.">
+  <link rel="alternate" type="application/atom+xml" title="The Commonplace Book" href="/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <h1 class="masthead-title"><a href="/">The Commonplace Book</a></h1>
+    <p class="masthead-tagline">books · films · code · mathematics · miscellany · est. 2026</p>
+    <nav class="masthead-nav">
+      <a href="/" >Home</a> |
+      <a href="/library/" >Library</a> |
+      <a href="/cinema/" >Cinema</a> |
+      <a href="/problems/" class="active">Problems</a> |
+      <a href="/archive/" >Archive</a> |
+      <a href="/about/" >About</a> |
+      <a href="/feed.xml">RSS</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="section-heading">The Problem Book</h2>
+
+<p style="text-align: center; font-style: italic; color: var(--soft);">
+  Mathematical problems worked through, each with its source noted.
+</p>
+
+<form class="filters" onsubmit="return false">
+  <input type="search" id="p-q" placeholder="Search problems…" aria-label="Search problems">
+  <select id="p-source" aria-label="Filter by source">
+    <option value="">All sources</option>
+    
+  </select>
+</form>
+<p class="filter-count" id="p-count"></p>
+
+<ul class="archive-list" id="p-list">
+  
+</ul>
+
+
+<p style="text-align: center; font-style: italic; color: var(--faint);">
+  The problem book is empty so far.
+</p>
+
+
+<script>
+(function () {
+  var q = document.getElementById('p-q'),
+      source = document.getElementById('p-source'),
+      count = document.getElementById('p-count'),
+      items = Array.prototype.slice.call(document.querySelectorAll('#p-list li'));
+
+  function apply() {
+    var qq = q.value.trim().toLowerCase(), shown = 0;
+    items.forEach(function (li) {
+      var ok =
+        (!qq || li.dataset.title.indexOf(qq) !== -1 || (li.dataset.source || '').toLowerCase().indexOf(qq) !== -1) &&
+        (!source.value || li.dataset.source === source.value);
+      li.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    count.textContent = shown === items.length
+      ? items.length + ' problems worked'
+      : shown + ' of ' + items.length + ' problems shown';
+  }
+
+  [q, source].forEach(function (el) {
+    el.addEventListener('input', apply);
+    el.addEventListener('change', apply);
+  });
+  apply();
+})();
+</script>
+
+  </main>
+
+  <footer class="colophon">
+    <div class="fleuron">❦</div>
+    <div>No algorithms. No tracking. No comments. Just words.</div>
+    <div class="badges">
+      <a href="/feed.xml"><b>RSS</b> — subscribe free</a><span class="sep">·</span>
+      <span>made with <b>plain HTML</b></span><span class="sep">·</span>
+      <span>best viewed in <b>any browser</b></span>
+    </div>
+    <div class="colophon-fine">© 2026 · hand-written · long live the old web</div>
+  </footer>
+
+</div>
+</body>
+</html>
